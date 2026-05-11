@@ -1,0 +1,40 @@
+#pragma once
+#include <bits/stdc++.h>
+#include "DateTime1.h"
+#include "Ve.h"
+const int macb_MAX = 16;
+const int noiden_MAX = 30;
+
+struct chuyenbay{
+	char machuyenbay[macb_MAX];
+	Datetime thoigiandi;
+	char noiden[noiden_MAX];
+	char sohieumaybay[sohieumb_MAX];
+	int tongsove;
+	int tongsodaban;
+	int trang_thai;//0: huy chuyen, 1: con ve, 2: het ve,3: hoan tat
+	VE *dsve;
+};
+typedef struct chuyenbay CB;
+
+struct nodeCB{
+	CB data;
+	VE *dsve[MAX_VE];
+	nodeCB *next;
+};
+typedef nodeCB *PTR;
+void khoitaochuyenbay(CB &A);
+PTR timmachuyenbay(PTR First, const char *ma);
+int timvtchuyenbay(PTR First, const char *ma);
+void Insert_Order_CB(PTR &First, CB x);
+void Thongtin1chuyenbay(CB x, int position);
+void Thongtinchuyenbaymottrang(PTR First, int StartIndex);
+void DSVCuaMotCB(CB &x);
+void DocFileChuyenBay(PTR &First, DSMB &LA);
+void GhiFileChuyenBay(PTR First);
+void NhapLieuThoiGian(Datetime &DT, int ordinal);
+void NhapLieuChuyenBay(PTR &First, DSMB &LA, int &StartIdx, int NumberPerPage);
+void HieuChinhThoiGian(PTR &First, DSMB &LA,int StartIdx,int NumberPerPage);
+void MenuChuyenBay();
+int TimSoChoMayBay(DSMB &LA, char* soHieu);
+void InSoDoGhe(CB &cb);
