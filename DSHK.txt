@@ -1,0 +1,33 @@
+8
+100111
+Dang Thu
+Ha
+0
+123456
+Vu
+Nhi
+0
+147000
+Nguyen Thu
+Ha
+0
+147001
+Nguyen
+Van
+0
+147002
+Dang Thuy
+Binh
+0
+147003
+Nguyen Minh
+Anh
+1
+150111
+Ngo Gia 
+Nguyen
+1
+157689
+Nguyen van
+A
+0
