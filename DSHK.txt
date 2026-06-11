@@ -1,0 +1,101 @@
+25
+6789
+Luu
+Thu
+0
+100111
+Dang Thu
+Ha
+0
+123456
+Vu
+Nhi
+0
+147000
+Nguyen Thu
+Ha
+0
+147001
+Nguyen
+Van
+0
+147002
+Dang Thuy
+Binh
+0
+147003
+Nguyen Minh
+Anh
+1
+147006
+Luong Duc 
+Thien
+0
+147007
+Quach Chi
+Cong
+0
+147008
+Dang Thu
+Ha
+0
+147009
+Dao Duy
+Anh
+1
+147011
+Dinh
+Mai
+0
+147012
+Bui Van
+Quyet
+1
+147013
+Nghiem Bao
+Ngoc
+0
+147014
+Mai Trung
+Kien
+1
+147015
+Ngo Viet
+Hoang
+1
+150111
+Ngo Gia 
+Nguyen
+1
+157689
+Nguyen van
+A
+0
+481920
+Pham Hoang
+Son
+1
+751910
+Phan Hoang
+Yen
+1
+1096001
+Nguyen
+Minh
+1
+1470010
+Trieu Phuong
+Thao
+0
+2094002
+Hoang
+Khanh
+1
+2519700
+Vu
+Thanh
+0
+3109300
+Le Thi Mai
+Anh
+0
