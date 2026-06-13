@@ -1,0 +1,330 @@
+#include <bits/stdc++.h>
+#include <string.h>
+#include <iomanip>
+#include <conio.h>
+#include <string.h>
+#include <cctype>
+#include "giaodien.h"
+#include "bien.h"
+
+using namespace std;
+
+void ConstraintForLETTERAndNumber(string &result,int &ordinal,bool &SaveOrNot,int distance)
+{
+	int lenght = (int)result.length();
+	gotoXY(4 + distance, ordinal*2 + 4);
+	cout << result;
+	int count = lenght;
+	while(true)
+	{
+		while( _kbhit() )
+		{
+			int signal = _getch();
+			if( signal == 224 || signal == 0){
+				_getch();
+				
+				continue;
+			}
+				/*	--------tu A den Z -----				------Tu a den z -------				-----Tu 0 den 9 -----*/
+			if( ( 65 <= signal && signal <= 90 ) || ( 97 <= signal && signal <= 122 ) || ( 48 <= signal && signal <= 57 ) )
+			{
+					char tmp = toupper(char(signal)); 
+					cout << tmp;// hien thi no tren man hinh nhap thong tin
+					result += tmp;// cap nhat ket qua vao RESULT
+			 		count++;// cap nhat bien count
+			}
+			else if( signal == ENTER){
+				if(count > 0){
+					SaveOrNot = true;
+				    return;					    
+					}
+				}
+			else if(signal == ESC){
+				SaveOrNot = false;
+				return;
+			}
+			else if( signal == BACKSPACE && count > 0)
+			{
+				cout << "\b" << " " << "\b";
+				result.erase(result.length() - 1 , 1);
+				count--;
+			}
+		}
+	}
+}
+void ConstraintsForLetterAndSpace(string &result,int &ordinal,bool &SaveOrNot,int distance)
+{
+	int count = result.length();
+	cout << result;
+	gotoXY(4 + distance, ordinal*2 + 4);
+	bool Spaced = false; // false nghia la chua space
+	int signal;
+	while( true )
+	{
+		while( _kbhit() )
+		{
+			signal = _getch();
+			if( signal == 224 || signal == 0){
+				_getch();
+				continue;
+			}
+			if ((65 <= signal && signal <= 90) || (97 <= signal && signal <= 122))
+            {
+                char c = (char)signal;
+                if (result.length() == 0 || result[result.length() - 1] == ' ') {
+                    c = toupper(c);
+                }
+                else {
+                c = tolower(c);
+                } 
+            cout << c;
+            result += c;
+            count++;
+            }
+			else if ( signal == SPACE){
+				if ( result.length() == 0 ) continue;
+				if (result[result.length() - 1] == ' ') continue;
+				cout <<" ";
+				result+=' ';
+				count++;
+			}
+			else if( signal == ENTER)
+			{
+				if(count == 0) continue;
+				SaveOrNot = true; 
+				return;
+			}	
+			else if(signal == ESC){
+				SaveOrNot = false;
+				return;
+			}
+			else if( signal == BACKSPACE && count > 0)
+			{
+				cout << "\b" << " " << "\b";
+				result.erase(result.length() - 1 , 1);
+				count--;
+			}
+		}//end while( kbhit() )
+	}// end while(true)
+}
+void ConstraintForOnlyLetter(string &result,int &ordinal,bool &SaveOrNot,int distance)
+{
+	int lenght = (int)result.length();
+	gotoXY(4 + distance, ordinal*2 + 4);
+	int count = lenght;
+	cout << result;
+	while(true)
+	{
+		while( _kbhit() )
+		{
+			int signal = _getch();
+			if ( signal == 224 || signal == 0)
+			{
+				_getch();
+				continue;
+		    }
+				/*   --- tu A den Z ---						---- tu a den z ---*/ 
+			if( ( 65 <= signal && signal <= 90 ) || ( 97 <= signal && signal <= 122 ) )
+			{
+					char tmp;
+					if(count == 0) tmp = toupper((char)signal);
+					else tmp = (char)signal;
+					result += tmp;
+					cout<< tmp;
+					count++;
+			}
+			else if( signal == ENTER)
+			{
+				if(count == 0) continue;
+				SaveOrNot = true; 
+				return;
+			}	
+			else if(signal == ESC){
+				SaveOrNot = false;
+				return;
+			}
+			else if( signal == BACKSPACE && count > 0)
+			{
+				cout << "\b" << " " << "\b";
+				result.erase(result.length() - 1 , 1);
+				count--;
+			}
+		}
+	}
+}
+void ConstraintForOnlyNumber(unsigned int &result,int &ordinal,bool &SaveOrNot,int distance,unsigned int LimitNumber)
+{
+	gotoXY(4 + distance,ordinal*2 + 4);
+	int count = 0;// mac dinh 
+
+	int num = result;
+	while (num != 0)
+	{
+		count++;
+		num /= 10;
+	} 
+	while( true )
+	{
+		while( _kbhit() )
+		{
+			int signal = _getch();
+			if( signal == 224 || signal == 0 )
+			{
+				_getch();
+				continue;
+			}
+				/*  ---tu 0 den 9--- va count nho hon 3*/
+			if( 48 <= signal && signal <= 57)
+			{
+			    int Numb = signal - 48;
+                if( (result*10 + Numb) <= LimitNumber) 
+				{
+					cout << Numb;
+					result = result*10 + Numb;
+					count ++;
+				}
+			}
+			else if (signal == ESC)
+			{
+				SaveOrNot = false;
+				return;
+			}	 
+			else if( signal == 8 && count > 0 )
+			{
+				cout << (char)BACKSPACE<<" "<<(char)BACKSPACE;
+				count--;
+				result /= 10;
+			}
+			else if( signal == ENTER)
+			{
+				if(count == 0) continue;
+				if (result > LimitNumber)  continue;
+				SaveOrNot = true;
+				return;
+			}
+		}
+			
+	}
+}
+void ConstraintForOnlyGender(int &result,int &ordinal,bool &SaveOrNot,int distance)
+{
+	gotoXY(4 + distance, ordinal*2 + 4);
+	if( result != 0)
+	{
+		cout << result;
+	}
+	int count = 0;
+	while( true )
+	{
+		while( _kbhit() )
+		{
+			int signal = _getch();
+			if( signal != 224 && signal != SPACE && signal != 0 )
+			{
+				/*  ---tu 0 den 1--- va count nho hon 3*/
+				if( 48 <= signal && signal <= 49)
+				{
+					/* signal = 56 -> numb = 56 - 48 = 8 -> ung dung voi so 8*/
+					int Numb = signal - 48;
+					
+					/* vi du LimitNumber = 100 co nghia may bay chi cho 
+					nhap toi da 100 cho ngoi */
+					if( -1 < result*10 + Numb && result*10 +Numb < 2) 
+					{
+						cout << Numb;
+						result = result*10 + Numb;
+						count ++;
+					}
+					else if(signal == ESC)
+					{
+						SaveOrNot = false;
+						return;
+					}
+
+				}
+				 
+				else if (signal == 8 && count >= 0)
+				{
+					cout << (char)BACKSPACE << " " << (char)BACKSPACE;
+					count--;
+					result /= 10;
+				}
+
+				else if( signal == ENTER)
+				{
+					if (result > 1)
+						continue;
+					return;
+				}
+			}// ( signal != 224 && signal != BACKSPACE && signal != 0)
+		}// while( _kbhit() )
+	}// while(true)
+}
+
+void ConstraintForDateAndTime( int &result,bool &SaveOrNot,  int LimitReach)
+{
+    result = 0;
+	int count = 0;
+	int signal ;
+	bool isYear = (LimitReach == 2100);
+	while(true)
+	{
+		while( _kbhit() )
+		{
+			signal = _getch();
+            if( signal == 224 || signal == 0 )
+			{
+				_getch();
+				continue;
+			}
+			if(  48 <= signal && signal <= 57 )
+			{
+				int numb = signal - 48;
+				if (isYear)
+				{
+					if (count == 0 && numb == 0) continue;
+					if (count >= 4) continue;
+					if (count == 3 && (result * 10 + numb) > LimitReach) continue;
+					cout << numb;
+					result = result * 10 + numb;
+					count++;
+				}
+				else
+				{
+					if( result > LimitReach )
+						continue;
+					if ( (result * 10 + numb) <= LimitReach)
+					{
+						cout << numb;
+						result = result * 10 + (numb);
+						count++;
+					}
+				}
+			}
+			else if (signal == 8 && count > 0)
+			{
+				cout << (char)BACKSPACE << " " << (char)BACKSPACE;
+				count--;
+				result /= 10;
+			}	
+			else if (signal == ENTER)
+			{
+				if (count == 0) continue;
+                if (result > LimitReach) continue;
+				if (isYear && count < 4) continue;
+				if (result == 0 && LimitReach != 23 && LimitReach != 59)
+                {
+                    continue;
+                }
+				    SaveOrNot = true; 
+					return;
+			}
+			else if (signal == ESC)
+			{
+				SaveOrNot = false;
+				return;
+			}
+		}
+	}
+}
+
